@@ -6,9 +6,10 @@ Curated list of useful bash techniques
 * [Generic](#user-content-generic)
   * [Check bash version](#user-content-check-bash-version)
   * [Check command exists](#user-content-check-command-exist)
+  * [Check OS](#user-content-check-os)
   * [Debug Mode](#user-content-debug-mode)
   * [Exit on error](#user-content-exit-on-error)
-  * [Check OS](#user-content-check-os)
+  * [Retry on error](#user-content-retry-on-error)
   * [User continue](#user-content-user-continue)
 * [Programming](#user-content-programming)
   * [Array](#user-content-array)
@@ -80,6 +81,33 @@ get_os() {
 
     echo "$machine"
 }
+```
+
+### <a name="user-content-retry-on-error"></a>Retry on error
+
+```sh
+function retry {
+  local retries="${1}"
+  shift
+
+  local count=0
+  until "$@"; do
+    exit=$?
+    wait=$((2 ** $count))
+    count=$(($count + 1))
+    if [ $count -lt $retries ]; then
+      echo "Retry $count/$retries exited $exit, retrying in $wait seconds..."
+      sleep $wait
+    else
+      echo "Retry $count/$retries exited $exit, no more retries left."
+      return $exit
+    fi
+  done
+  return 0
+}
+
+# retry 2 echo "hello"
+# retry 3 false
 ```
 
 ### <a name="user-content-user-continue"></a>User Continue
