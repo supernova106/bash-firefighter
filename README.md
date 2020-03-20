@@ -79,7 +79,7 @@ Convert `yaml` file (work with up to level 2 of keys) to `key=value` environment
 
 Requirements
 
-- yq >= 2.10.0
+- python-yq >= 2.10.0
 - jq
 
 
