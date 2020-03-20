@@ -98,7 +98,7 @@ Loop through values
 
 ```sh
 for i in "${foo[@]}"; do
-  echo "${i}: ${foo[$i]}"
+  echo "${i}"
 done
 ```
 
