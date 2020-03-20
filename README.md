@@ -2,15 +2,15 @@
 Curated list of useful bash techniques
 
 ## Table of Contents
-* [<a name="user-content-helper"></a>Helper](#helper)
-* [<a name="user-content-generic"></a>Generic](#generic)
-* [<a name="user-content-programming"></a>Programming](#programming)
-  * [<a name="user-content-array"></a>Array](#array)
-  * [<a name="user-content-regex"></a>Regex](#regex)
-* [<a name="user-content-config-files"></a>Config Files](#config-files)
-  * [<a name="user-content-yaml"></a>Yaml](#yaml)
-* [<a name="user-content-cloud-provider"></a>Cloud Provider](#cloud-provider)
-  * [<a name="user-content-aws"></a>AWS](#aws)
+* [Helper](#user-content-helper)
+* [Generic](#user-content-generic)
+* [Programming](#user-content-programming)
+  * [Array](#user-content-array)
+  * [Regex](#user-content-regex)
+* [Config Files](#user-content-config-files)
+  * [Yaml](#user-content-yaml)
+* [Cloud Provider](#user-content-cloud-provider)
+  * [AWS](#user-content-aws)
 
 ## <a name="user-content-helper"></a>Helper
 
