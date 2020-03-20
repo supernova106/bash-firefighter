@@ -115,7 +115,12 @@ fi
 
 ## AWS
 
-TBU
+Getting VPC CIDR from VPC_ID
+
+```sh
+$vpc_id=${1}
+aws ec2 describe-vpcs --vpc-ids $vpc_id | jq -r .Vpcs[0].CidrBlock
+```
 
 ## Linux
 
