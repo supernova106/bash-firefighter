@@ -7,7 +7,6 @@ Curated list of useful bash techniques
 * [Generic](#generic)
 * [Programming](#programming)
 * [Config Files](#config-files)
-** [Yaml](#yaml)
 * [Cloud Provider](#cloud-provider)
 
 ## <a name="helper"></a>Helper
