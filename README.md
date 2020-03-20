@@ -13,6 +13,8 @@ Curated list of useful bash techniques
   * [User continue](#user-content-user-continue)
 * [Programming](#user-content-programming)
   * [Array](#user-content-array)
+  * [Join](#user-content-join-method)
+  * [Split](#user-content-split-method)
   * [Regex](#user-content-regex)
   * [Modules](#user-content-modules)
   * [Function in Function](#user-content-function-in-function)
@@ -147,6 +149,28 @@ for i in "${foo[@]}"; do
 done
 ```
 
+### <a name="user-content-join-method"></a>Join method
+
+Join array to string
+
+```sh
+foo_arr=['a','b','c']
+bar=$(IFS=. ; echo "${foo_arr[*]}")
+
+# a.b.c
+```
+
+### <a name="user-content-split-method"></a>Split method
+
+Split string to array
+
+```sh
+IFS='.' read -ra arr <<< "a.b.c"
+
+echo "${arr[@]}
+# ['a', 'b', 'c']
+```
+
 ### <a name="user-content-regex"></a>Regex
 
 Validate IP address
@@ -279,6 +303,6 @@ convert_yaml_to_env config.yaml
 Getting VPC CIDR from VPC_ID
 
 ```sh
-$vpc_id=${1}
+vpc_id=${1}
 aws ec2 describe-vpcs --vpc-ids $vpc_id | jq -r .Vpcs[0].CidrBlock
 ```
