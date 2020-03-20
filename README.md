@@ -1,7 +1,15 @@
 # bash-firefighter
 Curated list of useful bash techniques
 
-## Helper
+# Table of Contents
+
+* [Helper](#helper)
+* [Generic](#generic)
+* [Programming](#programming)
+* [Config Files](#config-files)
+* [Cloud Provider](#cloud-provider)
+
+## <a name="helper"></a>Helper
 
 - brew
 
@@ -17,7 +25,7 @@ brew install python-yq
 
 ```
 
-## Generic
+## <a name="generic"></a>Generic
 
 Get OS platform
 
@@ -37,9 +45,9 @@ get_os() {
 }
 ```
 
-## Programming
+## <a name="programming"></a>Programming
 
-## Array
+### <a name="array"></a>Array
 
 Loop through indices, values
 
@@ -57,7 +65,7 @@ for i in "${foo[@]}"; do
 done
 ```
 
-## Regex
+### <a name="regex"></a>Regex
 
 Validate IP address
 
@@ -68,9 +76,9 @@ if [[ ! $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
 fi
 ```
 
-### Working with configuration files
+## <a name="config-files"></a>Config Files
 
-## YAML
+### <a name="yaml"></a>Yaml
 
 Convert `yaml` file (work with up to level 2 of keys) to `key=value` environment variables file
 
@@ -144,9 +152,9 @@ convert_yaml_to_env config.yaml
 
 ```
 
-## Cloud Provider
+## <a name="cloud-provider"></a>Cloud Provider
 
-### AWS
+### <a name="aws"></a>AWS
 
 Getting VPC CIDR from VPC_ID
 
