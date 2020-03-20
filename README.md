@@ -12,7 +12,7 @@ Curated list of useful bash techniques
 * [<a name="user-content-cloud-provider"></a>Cloud Provider](#cloud-provider)
   * [<a name="user-content-aws"></a>AWS](#aws)
 
-## <a name="helper"></a>Helper
+## <a name="user-content-helper"></a>Helper
 
 * brew
 
@@ -28,7 +28,7 @@ brew install python-yq
 
 ```
 
-## <a name="generic"></a>Generic
+## <a name="user-content-generic"></a>Generic
 
 Get OS platform
 
@@ -48,9 +48,9 @@ get_os() {
 }
 ```
 
-## <a name="programming"></a>Programming
+## <a name="user-content-programming"></a>Programming
 
-### <a name="array"></a>Array
+### <a name="user-content-array"></a>Array
 
 Loop through indices, values
 
@@ -68,7 +68,7 @@ for i in "${foo[@]}"; do
 done
 ```
 
-### <a name="regex"></a>Regex
+### <a name="user-content-regex"></a>Regex
 
 Validate IP address
 
@@ -79,9 +79,9 @@ if [[ ! $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
 fi
 ```
 
-## <a name="config-files"></a>Config Files
+## <a name="user-content-config-files"></a>Config Files
 
-### <a name="yaml"></a>Yaml
+### <a name="user-content-yaml"></a>Yaml
 
 Convert `yaml` file (work with up to level 2 of keys) to `key=value` environment variables file
 
@@ -155,9 +155,9 @@ convert_yaml_to_env config.yaml
 
 ```
 
-## <a name="cloud-provider"></a>Cloud Provider
+## <a name="user-content-cloud-provider"></a>Cloud Provider
 
-### <a name="aws"></a>AWS
+### <a name="user-content-aws"></a>AWS
 
 Getting VPC CIDR from VPC_ID
 
