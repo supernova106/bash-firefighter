@@ -4,11 +4,19 @@ Curated list of useful bash techniques
 ## Table of Contents
 * [Helper](#user-content-helper)
 * [Generic](#user-content-generic)
+  * [Check bash version](#user-content-check-bash-version)
+  * [Check command exists](#user-content-check-command-exist)
+  * [Debug Mode](#user-content-debug-mode)
+  * [Exit on error](#user-content-exit-on-error)
+  * [Check OS](#user-content-check-os)
+  * [User continue](#user-content-user-continue)
 * [Programming](#user-content-programming)
   * [Array](#user-content-array)
   * [Regex](#user-content-regex)
+  * [Modules](#user-content-modules)
+  * [Function in Function](#user-content-function-in-function)
 * [Config Files](#user-content-config-files)
-  * [Yaml](#user-content-yaml)
+  * [Convert YAML to key=value](#user-content-yaml)
 * [Cloud Provider](#user-content-cloud-provider)
   * [AWS](#user-content-aws)
 
@@ -30,45 +38,33 @@ brew install python-yq
 
 ## <a name="user-content-generic"></a>Generic
 
-Debug mode
+### <a name="user-content-check-bash-version"></a>Check Bash Version
+
+```sh
+bash --version
+```
+
+### <a name="user-content-check-command-exist"></a>Check Command Exist
+
+```sh
+command -v ${command_name} >/dev/null 2>&1 || echo "${command_name} not found!"
+```
+
+### <a name="user-content-debug-mode"></a>Debug mode
 
 ```sh
 #!/bin/bash
 set -x
 ```
 
-Exit on error
+### <a name="user-content-exit-on-error"></a>Exit on error
 
 ```sh
 #!/bin/bash
 set -e
 ```
 
-inlude bash file as a module
-
-```sh
-.
-├── foo.sh
-└── modules
-    └── utils.sh
-    
-$ cat modules/utils.sh
-#!/bin/bash
-
-function bar() {
-  echo "hello"
-}
-
-$ cat foo.sh
-#!/bin/bash
-
-source utils.sh
-
-bar
-
-```
-
-Get OS platform
+### <a name="user-content-check-os"></a>Check OS
 
 ```sh
 get_os() {
@@ -84,6 +80,23 @@ get_os() {
 
     echo "$machine"
 }
+```
+
+### <a name="user-content-user-continue"></a>User Continue
+
+```sh
+function user_continue() {
+    while true; do
+      read -r -p "Continue? [Y/N]" yn
+      case $yn in
+          [Yy]* ) break;;
+          [Nn]* ) echo "aborting";exit;;
+          * ) echo "Please answer y for yes or n for no.";;
+      esac
+    done
+}
+
+user_continue
 ```
 
 ## <a name="user-content-programming"></a>Programming
@@ -115,6 +128,44 @@ if [[ ! $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
   echo -e "error! $ip is not valid"
   return 1
 fi
+```
+
+### <a name="user-content-function-in-function"></a>Function in Function
+
+```sh
+foo() (
+  bar() {
+    echo "hello"
+  }
+  
+  bar
+)
+```
+
+### <a name="user-content-modules"></a>Modules
+
+inlude bash file as a module
+
+```sh
+.
+├── foo.sh
+└── modules
+    └── utils.sh
+    
+$ cat modules/utils.sh
+#!/bin/bash
+
+function bar() {
+  echo "hello"
+}
+
+$ cat foo.sh
+#!/bin/bash
+
+source utils.sh
+
+bar
+
 ```
 
 ## <a name="user-content-config-files"></a>Config Files
