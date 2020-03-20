@@ -14,6 +14,7 @@ Curated list of useful bash techniques
 * [Programming](#user-content-programming)
   * [Array](#user-content-array)
   * [Join](#user-content-join-method)
+  * [Variables](#user-content-variables)
   * [Split](#user-content-split-method)
   * [Regex](#user-content-regex)
   * [Modules](#user-content-modules)
@@ -158,6 +159,38 @@ foo_arr=['a','b','c']
 bar=$(IFS=. ; echo "${foo_arr[*]}")
 
 # a.b.c
+```
+
+### <a name="user-content-variables"></a>Variables
+
+Declare local variable
+
+```sh
+function foo() {
+  local bar=""
+}
+
+foo
+# only work with function
+```
+
+Declare global variable
+
+```sh
+bar=""
+
+function foo() {
+  echo "${bar}"
+}
+```
+
+Default value
+
+```sh
+bar="${1:-default}"
+
+echo "${bar}"
+# default
 ```
 
 ### <a name="user-content-split-method"></a>Split method
