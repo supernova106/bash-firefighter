@@ -214,7 +214,7 @@ function bar() {
 $ cat foo.sh
 #!/bin/bash
 
-source utils.sh
+source modules/utils.sh
 
 bar
 
