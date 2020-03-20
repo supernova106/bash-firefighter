@@ -1,7 +1,7 @@
 # bash-firefighter
 Curated list of useful bash techniques
 
-# Table of Contents
+## Table of Contents
 
 * [Helper](#helper)
 * [Generic](#generic)
@@ -11,14 +11,14 @@ Curated list of useful bash techniques
 
 ## <a name="helper"></a>Helper
 
-- brew
+* brew
 
 ```sh
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 ```
 
-- yq
-- jq
+* yq
+* jq
 
 ```sh
 brew install python-yq
