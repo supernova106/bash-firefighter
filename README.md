@@ -40,7 +40,8 @@ convert_yaml_to_env() {
     yaml_config_file="${1}"
 
     if [ "${yaml_config_file}" == "" ]; then
-        print_error "yaml_config_file is required. function source_cluster_config_yaml_to_env() failed" 
+        echo "yaml_config_file is required. function source_cluster_config_yaml_to_env() failed" 
+	return 1
     fi 
     yaml_config_data=$(cat "$yaml_config_file")
 
@@ -80,6 +81,8 @@ convert_yaml_to_env() {
     echo -e "generated ${output_file_path}/config.env"
     return 0
 }
+
+convert_yaml_to_env config.yaml
 
 ```
 
