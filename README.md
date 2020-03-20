@@ -17,12 +17,70 @@ brew install python-yq
 
 ```
 
+## Generic
+
+Get OS platform
+
+```sh
+get_os() {
+    unameOut="$(uname -s)"
+    local machine=""
+    case "${unameOut}" in
+        Linux*)     machine=Linux;;
+        Darwin*)    machine=Mac;;
+        CYGWIN*)    machine=Cygwin;;
+        MINGW*)     machine=MinGw;;
+        *)          machine="UNKNOWN:${unameOut}"
+    esac
+
+    echo "$machine"
+}
+```
+
+## Programming
+
+## Array
+
+Loop through indices, values
+
+```sh
+for i in "${!foo[@]}"; do
+  echo "${i}: ${foo[$i]}"
+done
+```
+
+Loop through values
+
+```sh
+for i in "${foo[@]}"; do
+  echo "${i}"
+done
+```
+
+## Regex
+
+Validate IP address
+
+```sh
+if [[ ! $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
+  echo -e "error! $ip is not valid"
+  return 1
+fi
+```
+
+### Working with configuration files
+
 ## YAML
 
 Convert `yaml` file (work with up to level 2 of keys) to `key=value` environment variables file
 
 - Detect if the input file's content changes with `md5()` hash
 - allow bash to work with yaml for configuration automation
+
+Requirements
+
+- yq >= 2.10.0
+- jq
 
 
 ```sh
@@ -86,61 +144,13 @@ convert_yaml_to_env config.yaml
 
 ```
 
+## Cloud Provider
 
-## Array
-
-Loop through indices, values
-
-```sh
-for i in "${!foo[@]}"; do
-  echo "${i}: ${foo[$i]}"
-done
-```
-
-Loop through values
-
-```sh
-for i in "${foo[@]}"; do
-  echo "${i}"
-done
-```
-
-## Regex
-
-Validate IP address
-
-```sh
-if [[ ! $ip =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}$ ]]; then
-  echo -e "error! $ip is not valid"
-  return 1
-fi
-```
-
-## AWS
+### AWS
 
 Getting VPC CIDR from VPC_ID
 
 ```sh
 $vpc_id=${1}
 aws ec2 describe-vpcs --vpc-ids $vpc_id | jq -r .Vpcs[0].CidrBlock
-```
-
-## Linux
-
-Get OS information
-
-```sh
-get_os() {
-    unameOut="$(uname -s)"
-    local machine=""
-    case "${unameOut}" in
-        Linux*)     machine=Linux;;
-        Darwin*)    machine=Mac;;
-        CYGWIN*)    machine=Cygwin;;
-        MINGW*)     machine=MinGw;;
-        *)          machine="UNKNOWN:${unameOut}"
-    esac
-
-    echo "$machine"
-}
 ```
