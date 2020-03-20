@@ -30,6 +30,44 @@ brew install python-yq
 
 ## <a name="user-content-generic"></a>Generic
 
+Debug mode
+
+```sh
+#!/bin/bash
+set -x
+```
+
+Exit on error
+
+```sh
+#!/bin/bash
+set -e
+```
+
+inlude bash file as a module
+
+```sh
+.
+├── foo.sh
+└── modules
+    └── utils.sh
+    
+$ cat modules/utils.sh
+#!/bin/bash
+
+function bar() {
+  echo "hello"
+}
+
+$ cat foo.sh
+#!/bin/bash
+
+source utils.sh
+
+bar
+
+```
+
 Get OS platform
 
 ```sh
