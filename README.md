@@ -26,18 +26,19 @@ Curated list of useful bash techniques
 
 ## <a name="user-content-helper"></a>Helper
 
-* brew
+* yq
 
 ```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+pip install python-yq==2.10.0
 ```
 
-* yq
 * jq
 
 ```sh
-brew install python-yq
-
+jq_version="1.6"
+cd /tmp/ && wget -q "https://github.com/stedolan/jq/releases/download/jq-${jq_version}/jq-linux64" && \
+        sudo cp jq-linux64 /usr/local/bin/jq && \
+        sudo chmod +x /usr/local/bin/jq
 ```
 
 ## <a name="user-content-generic"></a>Generic
