@@ -37,47 +37,11 @@ set -e
 
 ### <a name="user-content-retry-on-error"></a>Retry on error
 
-```sh
-function retry {
-  local retries="${1}"
-  shift
-
-  local count=0
-  until "$@"; do
-    exit=$?
-    wait=$((2 ** $count))
-    count=$(($count + 1))
-    if [ $count -lt $retries ]; then
-      echo "Retry $count/$retries exited $exit, retrying in $wait seconds..."
-      sleep $wait
-    else
-      echo "Retry $count/$retries exited $exit, no more retries left."
-      return $exit
-    fi
-  done
-  return 0
-}
-
-# retry 2 echo "hello"
-# retry 3 false
-```
+- Refer to [retry.sh](./scripts/retry.sh)
 
 ### <a name="user-content-user-continue"></a>User Continue
 
-```sh
-function user_continue() {
-    while true; do
-      read -r -p "Continue? [Y/N]" yn
-      case $yn in
-          [Yy]* ) break;;
-          [Nn]* ) echo "aborting";exit;;
-          * ) echo "Please answer y for yes or n for no.";;
-      esac
-    done
-}
-
-user_continue
-```
+- Refer to [user_continue.sh](./scripts/user_continue.sh)
 
 ## <a name="user-content-programming"></a>Programming
 
