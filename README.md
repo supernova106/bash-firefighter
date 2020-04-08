@@ -1,49 +1,24 @@
 # bash-firefighter
+
 Curated list of useful bash techniques
 
 ## Table of Contents
 
-* [Helper](#helper)
-* [Generic](#generic)
-* [Programming](#programming)
-* [Config Files](#config-files)
-* [Cloud Provider](#cloud-provider)
+- [Helper](#helper)
+- [Generic](#generic)
+- [Programming](#programming)
+- [Config Files](#config-files)
+- [Cloud Provider](#cloud-provider)
 
 ## <a name="helper"></a>Helper
 
-* brew
-
-```sh
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
-```
-
-* yq
-* jq
-
-```sh
-brew install python-yq
-
-```
+- yq, refer to [install_yq.sh](./scripts/install_yq.sh)
+- jq, refer to [install_jq.sh](./scripts/install_jq.sh)
 
 ## <a name="generic"></a>Generic
 
-Get OS platform
-
-```sh
-get_os() {
-    unameOut="$(uname -s)"
-    local machine=""
-    case "${unameOut}" in
-        Linux*)     machine=Linux;;
-        Darwin*)    machine=Mac;;
-        CYGWIN*)    machine=Cygwin;;
-        MINGW*)     machine=MinGw;;
-        *)          machine="UNKNOWN:${unameOut}"
-    esac
-
-    echo "$machine"
-}
-```
+- Get local directory of script [local_dir.sh](./scripts/local_dir.sh)
+- Get OS platform [get_os.sh](./scripts/get_os.sh)
 
 ## <a name="programming"></a>Programming
 
@@ -87,70 +62,10 @@ Convert `yaml` file (work with up to level 2 of keys) to `key=value` environment
 
 Requirements
 
-- python-yq >= 2.10.0
+- yq
 - jq
 
-
-```sh
-convert_yaml_to_env() {
-    local arr=""
-    local value=""
-    local master_keys_arr=""
-    local yaml_config_file=""
-    local yaml_config_data=""
-    local current_hash=""
-    local new_hash=""
-    local output_file_path=""
-
-    output_file_path="${PWD}"
-    yaml_config_file="${1}"
-
-    if [ "${yaml_config_file}" == "" ]; then
-        echo "yaml_config_file is required. function source_cluster_config_yaml_to_env() failed" 
-	return 1
-    fi 
-    yaml_config_data=$(cat "$yaml_config_file")
-
-    new_hash=$(md5sum "$yaml_config_file" | awk '{ print $1 }')
-    if [ -f "${output_file_path}/config.env" ]; then
-        current_hash=$(head -n 1 "${output_file_path}/config.env" | grep 'hash_id' | awk -F'=' '{ print $2 }')
-    fi
-    
-    echo -e "Generating config.env from config.yaml..."
-
-    if [ "${new_hash}" != "${current_hash}" ]; then
-        echo "# hash_id=${new_hash}" > "${output_file_path}"/config.env  
-    else
-        echo -e "hashid=${current_hash}. No change is found on config.yaml"
-        return 0
-    fi
-
-    master_keys_arr=()
-    while IFS='' read -r line; do
-    master_keys_arr+=("$line")
-    done < <(echo -e "${yaml_config_data}" | yq '.'  - | jq -r 'keys[]')
-    
-    for master_key in "${master_keys_arr[@]}"
-    do
-	    arr=()
-	    while IFS='' read -r line; do
-	    	arr+=("$line")
-	    done < <(echo -e "${yaml_config_data}" | yq .${master_key}  - | jq -r 'keys[]')
-
-	    for key in "${arr[@]}"
-	    do
-		value=$(echo -e "${yaml_config_data}" | yq -r .${master_key}.${key} -)
-		echo -e  "$key=\$(cat <<EOF\n${value}\nEOF\n)" >> "${output_file_path}"/config.env
-	    done
-    done
-
-    echo -e "generated ${output_file_path}/config.env"
-    return 0
-}
-
-convert_yaml_to_env config.yaml
-
-```
+Refer to [convert_yaml_to_env.sh](./scripts/convert_yaml_to_env.sh)
 
 ## <a name="cloud-provider"></a>Cloud Provider
 
