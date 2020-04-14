@@ -21,7 +21,7 @@ Curated list of useful bash techniques
 
 ## <a name="user-content-helper"></a>Helper
 
-- yq, refer to [install_yq.sh](./scripts/install_yq.sh)
+- yq, refer to [install_yq.sh](./scripts/install_yq.sh). Or [other ways](https://mikefarah.gitbook.io/yq/#on-ubuntu-16-04-or-higher-from-debian-package)
 - jq, refer to [install_jq.sh](./scripts/install_jq.sh)
 - Get local directory of script [local_dir.sh](./scripts/local_dir.sh)
 - Get OS platform [get_os.sh](./scripts/get_os.sh)
