@@ -25,6 +25,7 @@ Curated list of useful bash techniques
 - jq, refer to [install_jq.sh](./scripts/install_jq.sh)
 - Get local directory of script [local_dir.sh](./scripts/local_dir.sh)
 - Get OS platform [get_os.sh](./scripts/get_os.sh)
+- Promote AWS ECR Image [promote_ecr.sh](./scripts/promote_ecr.sh)
 
 ## <a name="user-content-generic"></a>Generic
 
