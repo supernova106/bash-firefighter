@@ -3,10 +3,18 @@
 SOURCE_AWS_ACCOUNT_ID="123"
 DESTINATION_AWS_ACCOUNT_ID="456"
 IMAGE="$1"
+
+install_aws() {
+  sudo python -m pip install awscli==1.18
+}
+
 if [ !"${IMAGE}" = "" ]; then
     echo "Please input image"
     exit 1
 fi
+
+install_aws
+
 aws ecr get-login-password \
     --region us-west-2 \
 | sudo docker login \
