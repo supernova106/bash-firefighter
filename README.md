@@ -193,3 +193,9 @@ Getting VPC CIDR from VPC_ID
 vpc_id=${1}
 aws ec2 describe-vpcs --vpc-ids $vpc_id | jq -r .Vpcs[0].CidrBlock
 ```
+
+Getting available ENIs ID
+
+```sh
+aws ec2 describe-network-interfaces --region us-west-2 --filters Name=status,Values=available,Name=group-name,Values=<GROUP_NAME> --max-items 2 | jq -r .NetworkInterfaces[].NetworkInterfaceId
+```
