@@ -2,6 +2,8 @@
 
 Curated list of useful bash techniques
 
+VScode must have [plugins](https://betterprogramming.pub/5-vs-code-extensions-for-bash-scripting-da94a6915598) for ShellScript
+
 ## Table of Contents
 
 - [Helper](#user-content-helper)
