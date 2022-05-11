@@ -37,6 +37,13 @@ if [ "$(timeout 1 bash -c '</dev/tcp/localhost/9100'; echo $?)" == "0" ]; then
 fi
 ```
 
+### get OS Platform
+
+```sh
+OS_PLATFORM=$(cat /etc/os-release | awk -F= '/^ID=/{print $2}' | tr -d '"')
+echo $OS_PLATFORM
+```
+
 ### <a name="user-content-exit-on-error"></a>Exit on error
 
 ```sh
