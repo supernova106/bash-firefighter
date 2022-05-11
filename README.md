@@ -29,6 +29,14 @@ Curated list of useful bash techniques
 
 ## <a name="user-content-generic"></a>Generic
 
+### Check if a port is open
+
+```sh
+if [ "$(timeout 1 bash -c '</dev/tcp/localhost/9100'; echo $?)" == "0" ]; then
+        echo "hi"
+fi
+```
+
 ### <a name="user-content-exit-on-error"></a>Exit on error
 
 ```sh
